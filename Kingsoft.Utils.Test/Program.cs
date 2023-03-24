@@ -2,9 +2,9 @@
 using System.Numerics;
 using System.Threading;
 using Kingsoft.Utils.Programs.Engine;
-using YamlDotNet.Serialization;
 using Newtonsoft.Json;
 using System.IO;
+using Kingsoft.Utils.Text;
 
 namespace Kingsoft.Utils.Test
 {
@@ -14,21 +14,15 @@ namespace Kingsoft.Utils.Test
 
         public void Awake()
         {
-            Deserializer deserializer = new Deserializer();
-            object obj = deserializer.Deserialize<object>(File.ReadAllText(@"C:\Users\TimKral\Desktop\Projects\PeopleDB\person.yaml"));
-            Console.WriteLine(JsonConvert.SerializeObject(obj, Formatting.Indented));
-            while (true)
+            WordProcessor processor = new WordProcessor();
+            processor.AddWordListener("hello", data =>
             {
+                Console.WriteLine("found 'hello'!");
+            });
 
-            }
+            processor.Decode("hello world");
+
+            while (true) { }
         }
-    }
-
-    internal class Person
-    {
-        [YamlMember(Alias = "name")]
-        public string Name { get; set; }
-        [YamlMember(Alias = "name")]
-        public string Name { get; set; }
     }
 }

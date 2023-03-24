@@ -76,6 +76,10 @@
       <Project>{3e965b90-2e03-43f5-a680-1086215947cf}</Project>
       <Name>Kingsoft.Utils.Programs.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kingsoft.Utils.Text\Kingsoft.Utils.Text.csproj">
+      <Project>{54989465-ceb5-4223-a2fb-0f343c2fe8e5}</Project>
+      <Name>Kingsoft.Utils.Text</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kingsoft.Utils.TypeExtensions\Kingsoft.Utils.TypeExtensions.csproj">
       <Project>{3c7d4ec8-63fc-45d5-b7f6-a5ab3a8af984}</Project>
       <Name>Kingsoft.Utils.TypeExtensions</Name>

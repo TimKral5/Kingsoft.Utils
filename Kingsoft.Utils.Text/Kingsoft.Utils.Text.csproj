@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C7D4EC8-63FC-45D5-B7F6-A5AB3A8AF984}</ProjectGuid>
+    <ProjectGuid>{54989465-CEB5-4223-A2FB-0F343C2FE8E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kingsoft.Utils.TypeExtensions</RootNamespace>
-    <AssemblyName>Kingsoft.Utils.TypeExtensions</AssemblyName>
+    <RootNamespace>Kingsoft.Utils.Text</RootNamespace>
+    <AssemblyName>Kingsoft.Utils.Text</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,7 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,13 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharExt\CharExtension.cs" />
-    <Compile Include="ColorExt\ColorExtension.cs" />
-    <Compile Include="ColorExt\ConsoleColorExtension.cs" />
-    <Compile Include="ConsoleExt\ConsoleColorTool.cs" />
-    <Compile Include="ConsoleExt\ConsoleTools.cs" />
-    <Compile Include="DictionaryExt\DictionaryExtension.cs" />
+    <Compile Include="WordProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kingsoft.Utils.TypeExtensions\Kingsoft.Utils.TypeExtensions.csproj">
+      <Project>{3c7d4ec8-63fc-45d5-b7f6-a5ab3a8af984}</Project>
+      <Name>Kingsoft.Utils.TypeExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
