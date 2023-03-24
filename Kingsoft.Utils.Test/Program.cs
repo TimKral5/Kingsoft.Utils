@@ -1,27 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
+using System.Threading;
+using Kingsoft.Utils.Programs.Engine;
+using YamlDotNet.Serialization;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Kingsoft.Utils.Test
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) => Engine.Invoke(new Program(), true);
+
+        public void Awake()
         {
-            Http.Server.HttpListener server = new Http.Server.HttpListener();
-
-            server.Get("/api/login", (_args, self, WriteRes, req) =>
+            Deserializer deserializer = new Deserializer();
+            object obj = deserializer.Deserialize<object>(File.ReadAllText(@"C:\Users\TimKral\Desktop\Projects\PeopleDB\person.yaml"));
+            Console.WriteLine(JsonConvert.SerializeObject(obj, Formatting.Indented));
+            while (true)
             {
-                var body = Http.Server.HttpListener.Utils.GetFPostBody(req);
-                Console.WriteLine(body);
-                byte[] data = Encoding.UTF8.GetBytes("hello world!!!");
-                WriteRes(self, (data, Encoding.UTF8, "text/plain", data.LongLength), null);
-                return data;
-            });
 
-            server.RunServer(3000);
+            }
         }
+    }
+
+    internal class Person
+    {
+        [YamlMember(Alias = "name")]
+        public string Name { get; set; }
+        [YamlMember(Alias = "name")]
+        public string Name { get; set; }
     }
 }

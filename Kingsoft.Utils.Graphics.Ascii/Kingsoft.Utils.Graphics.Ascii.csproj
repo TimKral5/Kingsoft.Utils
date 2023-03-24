@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF62D193-D244-4826-82F4-E709C29DC03C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Kingsoft.Utils.Test</RootNamespace>
-    <AssemblyName>Kingsoft.Utils.Test</AssemblyName>
+    <ProjectGuid>{2AE391AE-C944-48CE-84FC-65FB86CE70EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kingsoft.Utils.Graphics.Ascii</RootNamespace>
+    <AssemblyName>Kingsoft.Utils.Graphics.Ascii</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,14 +30,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.JScript" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -50,36 +45,24 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="YamlDotNet, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.13.0.2\lib\net47\YamlDotNet.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AsciiChunk2D.cs" />
+    <Compile Include="AsciiEngine2D.cs" />
+    <Compile Include="AsciiScreenBuffer.cs" />
+    <Compile Include="AsciiTile2D.cs" />
+    <Compile Include="AsciiMap2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\UIComponent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="app.manifest" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Kingsoft.Utils.Graphics.Ascii\Kingsoft.Utils.Graphics.Ascii.csproj">
-      <Project>{2ae391ae-c944-48ce-84fc-65fb86ce70ee}</Project>
-      <Name>Kingsoft.Utils.Graphics.Ascii</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kingsoft.Utils.Http\Kingsoft.Utils.Http.csproj">
-      <Project>{f42a5d49-c619-4ad5-89b1-4d9bda2ff37c}</Project>
-      <Name>Kingsoft.Utils.Http</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kingsoft.Utils.Programs.Engine\Kingsoft.Utils.Programs.Engine.csproj">
-      <Project>{3e965b90-2e03-43f5-a680-1086215947cf}</Project>
-      <Name>Kingsoft.Utils.Programs.Engine</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Kingsoft.Utils.TypeExtensions\Kingsoft.Utils.TypeExtensions.csproj">
       <Project>{3c7d4ec8-63fc-45d5-b7f6-a5ab3a8af984}</Project>
       <Name>Kingsoft.Utils.TypeExtensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
