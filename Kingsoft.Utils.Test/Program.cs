@@ -5,6 +5,8 @@ using Kingsoft.Utils.Programs.Engine;
 using Newtonsoft.Json;
 using System.IO;
 using Kingsoft.Utils.Text;
+using Kingsoft.Utils.Security.Cryptography;
+using Kingsoft.Utils.Http.Client;
 
 namespace Kingsoft.Utils.Test
 {
@@ -14,14 +16,11 @@ namespace Kingsoft.Utils.Test
 
         public void Awake()
         {
-            WordProcessor processor = new WordProcessor();
-            processor.AddWordListener("hello", data =>
-            {
-                Console.WriteLine("found 'hello'!");
-            });
-
-            processor.Decode("hello world");
-
+            string key = Guid.NewGuid().ToString();
+            HttpRequest req = new HttpRequest();
+            req.Open("GET", "http://localhost:3005/register", false);
+            req.Send(key);
+            Console.WriteLine(StringEncription.Instance.Decrypt(req.ResponseText, key));
             while (true) { }
         }
     }

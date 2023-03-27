@@ -22,7 +22,7 @@ namespace Kingsoft.Utils.Text
 
         private Dictionary<string, object> States { get; set; }
         private Dictionary<string, Action<WordProcessorData<string>>[]> WordListeners { get; set; }
-        private Dictionary<char, Action<WordProcessorData<char>>[]> CharListeners { get; set; }
+        private Dictionary<char?, Action<WordProcessorData<char>>[]> CharListeners { get; set; }
 
         public object this[string index] 
         {
@@ -34,44 +34,45 @@ namespace Kingsoft.Utils.Text
         {
             States = new Dictionary<string, object>();
             WordListeners = new Dictionary<string, Action<WordProcessorData<string>>[]>();
-            CharListeners = new Dictionary<char, Action<WordProcessorData<char>>[]>();
+            CharListeners = new Dictionary<char?, Action<WordProcessorData<char>>[]>();
 
             if (wordSeparators == null)
                 wordSeparators = new char[] { ' ', '\t', '\r', '\n' };
             States.Set("WordSeparators", wordSeparators);
         }
 
-        public void Decode(string text)
+        public void Decode(string text, bool handleCharEarly = false)
         {
             string processedStr = "";
             List<string> processedWords = new List<string>();
 
             string word = "";
+            char ch;
 
-            void invoke<T>(Action<WordProcessorData<T>> func, T current)
+            void invoke<T>(Action<WordProcessorData<T>> func, T current) => func.Invoke(new WordProcessorData<T>
             {
-                func(new WordProcessorData<T>
-                {
-                    ProcessedText = processedStr,
-                    ProcessedWords = processedWords.ToArray(),
-                    CurrentElement = current,
-                    RemainingText = text,
-                    States = States
-                });
-            }
+                ProcessedText = processedStr,
+                ProcessedWords = processedWords.ToArray(),
+                CurrentElement = current,
+                RemainingText = text,
+                States = States
+            });
+
+            void handleChar() => CharListeners.All(
+                listener =>
+            {
+                if (listener.Key == null || listener.Key == ch)
+                    listener.Value.All(func => { invoke(func, ch); return true; });
+                return true;
+            });
 
             while (text.Length > 0)
             {
-                char ch = text[0];
+                ch = text[0];
                 text = text.Substring(1);
                 processedStr += ch;
-
-                CharListeners.All(listener =>
-                {
-                    if (listener.Key == ch)
-                        listener.Value.All(func => { invoke(func, ch); return true; });
-                    return true;
-                });
+                if (handleCharEarly)
+                    handleChar();
 
                 if (!((char[])States["WordSeparators"]).Any(_ch => _ch == ch) && text.Length > 0)
                     word += ch;
@@ -80,23 +81,24 @@ namespace Kingsoft.Utils.Text
                     processedWords.Add(word);
                     WordListeners.All(listener =>
                     {
-                        Console.WriteLine("key: {0}", listener.Key);
-                        if (listener.Key == word)
+                        if (listener.Key == null || listener.Key == word)
                             listener.Value.All(func => { invoke(func, word); return true; });
                         return true;
                     });
                     word = "";
                 }
 
-                Console.WriteLine(word);
-                
+                if (!handleCharEarly)
+                    handleChar();
             }
         }
 
-        public void AddWordListener(string str, Action<WordProcessorData<string>> cb) => WordListeners.Set(str, cb);
+        public byte AddWordListener(string str, Action<WordProcessorData<string>> cb) => WordListeners.Set(str, cb);
         public void RemoveWordListener(string str, Action<WordProcessorData<string>> cb) => WordListeners.Remove(str);
 
-        public void AddCharListener(char ch, Action<WordProcessorData<char>> cb) => CharListeners.Set(ch, cb);
-        public void RemoveCharListener(char ch, Action<WordProcessorData<char>> cb) => CharListeners.Remove(ch);
+        public byte AddCharListener(char? ch, Action<WordProcessorData<char>> cb) => CharListeners.Set(ch, cb);
+        public void RemoveCharListener(char? ch, Action<WordProcessorData<char>> cb) => CharListeners.Remove(ch);
+
+        public Dictionary<string, Action<WordProcessorData<string>>[]> GetWordListeners() => WordListeners;
     }
 }

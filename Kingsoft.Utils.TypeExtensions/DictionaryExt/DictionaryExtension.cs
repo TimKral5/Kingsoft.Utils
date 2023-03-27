@@ -31,7 +31,7 @@ namespace Kingsoft.Utils.TypeExtensions.DictionaryExt
                 result = 1;
             }
             if (!dict[key].Contains(value))
-                dict[key].Append(value);
+                dict[key] = dict[key].Append(value).ToArray();
             else result = 2;
             return result;
         }
