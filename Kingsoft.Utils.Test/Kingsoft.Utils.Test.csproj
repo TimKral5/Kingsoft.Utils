@@ -64,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Kingsoft.Utils.DLL\Kingsoft.Utils.DLL.csproj">
+      <Project>{17c1fc99-5abc-4ba5-968e-94055b5b3a79}</Project>
+      <Name>Kingsoft.Utils.DLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kingsoft.Utils.Graphics.Ascii\Kingsoft.Utils.Graphics.Ascii.csproj">
       <Project>{2ae391ae-c944-48ce-84fc-65fb86ce70ee}</Project>
       <Name>Kingsoft.Utils.Graphics.Ascii</Name>
