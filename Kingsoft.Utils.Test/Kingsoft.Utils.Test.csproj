@@ -40,10 +40,25 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Spectre.Console, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spectre.Console.0.46.0\lib\netstandard2.0\Spectre.Console.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +79,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Kingsoft.Utils.Abstract\Kingsoft.Utils.Abstract.csproj">
+      <Project>{cec0d161-9e6d-48b5-be0d-6260b05d6ae3}</Project>
+      <Name>Kingsoft.Utils.Abstract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingsoft.Utils.Basic\Kingsoft.Utils.Basic.csproj">
+      <Project>{e0267dcf-e1a6-4188-9bee-c54d65962906}</Project>
+      <Name>Kingsoft.Utils.Basic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kingsoft.Utils.DLL\Kingsoft.Utils.DLL.csproj">
       <Project>{17c1fc99-5abc-4ba5-968e-94055b5b3a79}</Project>
       <Name>Kingsoft.Utils.DLL</Name>
@@ -75,6 +98,10 @@
     <ProjectReference Include="..\Kingsoft.Utils.Http\Kingsoft.Utils.Http.csproj">
       <Project>{f42a5d49-c619-4ad5-89b1-4d9bda2ff37c}</Project>
       <Name>Kingsoft.Utils.Http</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingsoft.Utils.Nuget.SpectreConsole\Kingsoft.Utils.Nuget.SpectreConsole.csproj">
+      <Project>{deeeb035-77a7-4bde-8825-0f1a204aec21}</Project>
+      <Name>Kingsoft.Utils.Nuget.SpectreConsole</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kingsoft.Utils.Programs.Engine\Kingsoft.Utils.Programs.Engine.csproj">
       <Project>{3e965b90-2e03-43f5-a680-1086215947cf}</Project>

@@ -13,7 +13,6 @@ namespace Kingsoft.Utils.DLL
             var asm = Assembly.LoadFile(file);
             var t = asm.GetTypes();
             t.All(el => { Console.WriteLine(el.FullName); return true; });
-            var builder = TypeBuilder.defi
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Kingsoft.Utils.DLL
     [AttributeUsage(AttributeTargets.Class)]
     public class DLLDummy : Attribute
     {
+        
         public string Namespace { get; private set; }
         public string Name { get; private set; }
 

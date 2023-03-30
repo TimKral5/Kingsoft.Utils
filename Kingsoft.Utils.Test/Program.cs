@@ -4,10 +4,8 @@ using System.Threading;
 using Kingsoft.Utils.Programs.Engine;
 using Newtonsoft.Json;
 using System.IO;
-using Kingsoft.Utils.Text;
-using Kingsoft.Utils.Security.Cryptography;
-using Kingsoft.Utils.Http.Client;
-using Kingsoft.Utils.DLL;
+using Kingsoft.Utils.Nuget.SpectreConsole;
+using Spectre.Console;
 
 namespace Kingsoft.Utils.Test
 {
@@ -18,7 +16,12 @@ namespace Kingsoft.Utils.Test
 
         public void Awake()
         {
-            DLLTool.Load(PDir + "/Kingsoft.Utils.TypeExtensions.dll");
+            var prompt = new ExplorerSelectionPrompt(backBtn: "[[...]]", frame: "[[{0}]]");
+            prompt.SetPath("/hello/my/friend", (str, handler) => { handler.Resolve(); });
+            prompt.SetPath("/hello/my/fellow/collegues", (str, handler) => { handler.Resolve(); });
+
+            string res = AnsiConsole.Prompt(prompt);
+            Console.WriteLine(res);
             while (true) { }
         }
     }
